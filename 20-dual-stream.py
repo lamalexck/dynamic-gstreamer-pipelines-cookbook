@@ -24,8 +24,12 @@ def create_pipeline(name):
     src.set_property("pattern", "smpte100")
     pipeline.add(src)
 
+    fakesink = Gst.ElementFactory.make("fakesink", f"fakesink-{name}")
+    pipeline.add(fakesink)
+    
     sink = Gst.ElementFactory.make("fpsdisplaysink", f"sink-{name}")
     sink.set_property("text-overlay", False) 
+    sink.set_property("video-sink", fakesink)
     pipeline.add(sink)
     src.link_filtered(sink, caps)
 
