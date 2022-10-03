@@ -182,24 +182,24 @@ def remove_sinkbin(sinkbin):
     Gst.debug_bin_to_dot_file_with_ts(pipeline, Gst.DebugGraphDetails.ALL, "remove_sinkbin")
     log.info("Removed sink-bin from Pipeline")
 
-stop_event = Event()
+# stop_event = Event()
 
-def timed_sequence():
-    log.info("Scheduling add_sinkbin")
-    if stop_event.wait(5): return
-    GLib.idle_add(add_sinkbin, "video_out.mp4") 
+# def timed_sequence():
+#     log.info("Scheduling add_sinkbin")
+#     if stop_event.wait(5): return
+#     GLib.idle_add(add_sinkbin, "video_out.mp4") 
 
-    log.info("Scheduling remove_sinkbin")
-    if stop_event.wait(5): return
-    GLib.idle_add(stop_sinkbin) 
+#     log.info("Scheduling remove_sinkbin")
+#     if stop_event.wait(5): return
+#     GLib.idle_add(stop_sinkbin) 
 
-    log.info("Scheduling add_sinkbin")
-    if stop_event.wait(5): return
-    GLib.idle_add(add_sinkbin, "video_out2.mp4") 
+#     log.info("Scheduling add_sinkbin")
+#     if stop_event.wait(5): return
+#     GLib.idle_add(add_sinkbin, "video_out2.mp4") 
 
-    log.info("Scheduling remove_sinkbin")
-    if stop_event.wait(5): return
-    GLib.idle_add(stop_sinkbin) 
+#     log.info("Scheduling remove_sinkbin")
+#     if stop_event.wait(5): return
+#     GLib.idle_add(stop_sinkbin) 
 
 #t = Thread(target=timed_sequence, name="Sequence")
 #t.start()
@@ -207,5 +207,5 @@ def timed_sequence():
 runner = Runner(pipeline)
 runner.run_blocking()
 
-stop_event.set()
+# stop_event.set()
 #t.join()
