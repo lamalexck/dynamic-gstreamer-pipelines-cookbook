@@ -110,3 +110,14 @@ venv.bak/
 
 # Dot-Files
 *.dot
+
+# Virtual environments
+venv/
+
+# GSTGVA
+gstgva/
+
+*.mp4
+
+# models
+models/
